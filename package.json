@@ -1,0 +1,15 @@
+{
+  "name": "twilio-2fa-bot",
+  "version": "0.0.1",
+  "description": "Simple web app that expose endpoint for Twilio phone number and repost content of text messages (from 2FA services) to Slack channel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Kuba Niechciał",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
