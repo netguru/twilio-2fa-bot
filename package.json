@@ -10,7 +10,8 @@
   "author": "Kuba Niechciał",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "body-parser": "^1.15.0",
   },
   "devDependencies": {
     "gulp": "^3.9.1",
