@@ -2,7 +2,7 @@ const postNotification = require('../integrations/slack').postNotification;
 const TwilioMessage = require('../models/twilio-message');
 
 module.exports = {
-  postReceived: function(req, res) {
+  postReceived(req, res) {
     const sms = req.body;
     const smsContent = sms.Body;
     const smsSender = sms.From;
