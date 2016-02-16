@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var twilioController = require('../controllers/twilio-controller');
+const twilioController = require('../controllers/twilio-controller');
 
 module.exports = function() {
   router.route('/received')
