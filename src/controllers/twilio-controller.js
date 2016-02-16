@@ -1,9 +1,5 @@
-const Slack = require('slack-node');
-
-const token = process.env.SLACK_TOKEN || '';
-const slackChannel = process.env.SLACK_CHANNEL || '#general';
-
-const slackClient = new Slack(token);
+const postNotification = require('../integrations/slack').postNotification;
+const TwilioMessage = require('../models/twilio-message');
 
 module.exports = {
   postReceived: function(req, res) {
@@ -11,15 +7,15 @@ module.exports = {
     const smsContent = sms.Body;
     const smsSender = sms.From;
 
-    slackClient.api('chat.postMessage', {
-      text: `Twilio message: ${smsContent} -- from ${smsSender}`,
-      channel: slackChannel,
-    }, function(err, response) {
-      if (err) {
-        console.error(err);
-      }
-    });
+    const twilioMessage = new TwilioMessage;
+    twilioMessage.content = smsContent;
+    twilioMessage.sender = smsSender;
 
-    res.status(204).send();
+    twilioMessage.save((err) => {
+      if (err) console.error('Twilio Message create error!');
+
+      postNotification(`New Twilio message from ${smsSender}`);
+      res.status(204).send();
+    });
   }
 };
