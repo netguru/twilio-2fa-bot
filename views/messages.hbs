@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Twilio 2FA Bot</title>
+    <title>Twilio 2FA Bot - Messages</title>
 
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
@@ -16,21 +16,33 @@
     <div class="container">
       <div class="header clearfix">
         <nav>
-          <ul class="nav nav-pills pull-right">
-            {{#if user}}
-              <li role="presentation" class="active"><a href="/messages">Messages</a></li>
-            {{else}}
-              <li role="presentation" class="active"><a href="/auth/google">Sign in</a></li>
-            {{/if}}
-          </ul>
         </nav>
         <h3 class="text-muted">Twilio 2FA Bot</h3>
       </div>
 
       <div class="jumbotron">
-        <h1>Twilio Scrapper</h1>
-        <p class="lead">Here you will find all Twilio 2FA Codes that arrived to shared Twilio number in @netguru.pl domain.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign in</a></p>
+        {{#if messages.length}}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>From</th>
+                <th>Content</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each messages as |message|}}
+                <tr>
+                  <td>{{message.sender}}</td>
+                  <td>{{message.content}}</td>
+                  <td>{{message.createdAt}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <h3>No messages!</h3>
+        {{/if}}
       </div>
 
       <footer class="footer">
