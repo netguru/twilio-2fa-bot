@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const handlebars = require('express-handlebars');
 
 const twilioRouter = require('./src/routes/twilio-routes')();
+const homepageRouter = require('./src/routes/home-page-routes')();
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/twilio', twilioRouter);
+app.use('/', homepageRouter);
 
 // View Engine
 app.engine('.hbs', handlebars({ extname: '.hbs' }));
