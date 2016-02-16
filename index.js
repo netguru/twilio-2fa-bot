@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const handlebars = require('express-handlebars');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const twilioRouter = require('./src/routes/twilio-routes')();
 const homepageRouter = require('./src/routes/home-page-routes')();
@@ -11,6 +13,15 @@ const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(session({
+  secret: '897f3e5cf67663f15227e671abbd7ccd2bd5b8dcc31dab53e5e7677bd35c8dd3',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+// Passport setup
+require('./config/passport')(app);
 
 // Routes
 app.use('/twilio', twilioRouter);
