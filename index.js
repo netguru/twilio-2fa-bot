@@ -6,6 +6,7 @@ const session = require('express-session');
 
 const twilioRouter = require('./src/routes/twilio-routes')();
 const homepageRouter = require('./src/routes/home-page-routes')();
+const authRouter = require('./src/routes/auth-routes')();
 
 const app = express();
 
@@ -26,6 +27,7 @@ require('./config/passport')(app);
 // Routes
 app.use('/twilio', twilioRouter);
 app.use('/', homepageRouter);
+app.use('/auth', authRouter);
 
 // View Engine
 app.engine('.hbs', handlebars({ extname: '.hbs' }));
