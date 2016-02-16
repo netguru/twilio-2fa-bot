@@ -9,6 +9,13 @@ module.exports = function () {
         callbackURL: `${process.env.DOMAIN}/auth/google/callback`,
       },
       function (req, accessToken, refreshToken, profile, done) {
+        if (process.env.EMAIL_DOMAIN_RESTRICTION) {
+          const profileDomain = profile.emails[0].value.split('@')[1];
+          if (profileDomain !== process.env.EMAIL_DOMAIN_RESTRICTION) {
+            done('Unauthorized for your email domain', null);
+          }
+        }
+
         const query = {
             'google.id': profile.id
         };
