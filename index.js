@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const handlebars = require('express-handlebars');
 
 const twilioRouter = require('./src/routes/twilio-routes')();
 
@@ -12,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/twilio', twilioRouter);
+
+// View Engine
+app.engine('.hbs', handlebars({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 // Database setup
 require('./config/mongo-db')();
