@@ -24,7 +24,7 @@ node_modules
 .node_repl_history
 
 # env
-.env
+.env.ini
 
 # vim
 *.swp
