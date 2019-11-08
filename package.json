@@ -20,7 +20,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
     "moment": "^2.11.2",
-    "mongoose": "^4.4.3",
+    "mongoose": "^5.7.8",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "slack-node": "^0.2.0",
